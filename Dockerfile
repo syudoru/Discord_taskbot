@@ -1,10 +1,10 @@
-FROM python:3.12-slim
+FROM node:24-slim
 
 WORKDIR /app
 
 # 依存関係を先にインストール（キャッシュ活用）
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY package*.json ./
+RUN npm ci --only=production
 
 # ソースコードをコピー
 COPY . .
