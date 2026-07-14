@@ -1,5 +1,11 @@
-const { http } = require("@google-cloud/functions-framework");
+const express = require("express");
+const app = express();
+const PORT = process.env.PORT || 8080;
 
-http("discordBot", (req, res) => {
-  res.send("Hello, Cloud Run functions!");
+app.get("/", (req, res) => {
+  res.send("Discord Task Bot is running.");
 });
+
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`)
+})

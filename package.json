@@ -1,10 +1,10 @@
 {
   "name": "discord-task-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "hogehogehogehoge",
   "main": "index.js",
   "scripts": {
-  "start": "functions-framework --target=discordBot",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +12,15 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@google-cloud/functions-framework": "^5.0.5"
-  }
+    "@google-cloud/functions-framework": "^5.0.5",
+    "express": "^5.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syudoru/Discord_taskbot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/syudoru/Discord_taskbot/issues"
+  },
+  "homepage": "https://github.com/syudoru/Discord_taskbot#readme"
 }
