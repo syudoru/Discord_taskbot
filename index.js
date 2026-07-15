@@ -39,7 +39,7 @@ app.post("/interactions", (req, res) => {
   }
 
   try {
-    const isValid = await verifyKey(
+    const isValid = verifyKey(
       req.rawBody,
       signature,
       timestamp,
