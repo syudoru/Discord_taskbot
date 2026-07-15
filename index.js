@@ -90,11 +90,13 @@ const PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY;
 
 // インタラクションエンドポイント
 app.post('/interactions', async (req, res) => {
+  console.log("Interaction received");
+
   const signature = req.get('X-Signature-Ed25519');
   const timestamp = req.get('X-Signature-Timestamp');
   const body = req.body;
 
-  if (!req.rawBody || !signature || !timestamp || !PUBLIC_KEY) {
+  if (!body || !signature || !timestamp || !PUBLIC_KEY) {
     //データ不備
     return res.status(401).send("Invalid signature");
   }
@@ -104,6 +106,9 @@ app.post('/interactions', async (req, res) => {
   if (!isValidRequest) {
     return res.status(401).send('Bad request signature');
   }
+
+  //署名検証成功
+  console.log("Signature verification succeeded.");
 
   const interaction = JSON.parse(body.toString());
 
