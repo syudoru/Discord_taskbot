@@ -59,15 +59,17 @@ app.post("/interactions", (req, res) => {
 
   //–¼ŒŸØ¬Œ÷
   console.log("Signature verification succeeded.");
-  console.log(req.body);
+  //console.log(req.body);
   console.log(req.rawBody.toString());
 
   //PING
   if (req.body.type === 1) {
     //PONG
+    console.log("PONG");
     return res.json({ type: 1 });
   }
 
+  console.log("send 200");
   res.status(200).send("OK");
 })
 
