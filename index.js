@@ -86,7 +86,7 @@ const { InteractionType, InteractionResponseType, verifyKey } = require('discord
 const app = express();
 app.use(express.raw({ type: 'application/json' }));
 
-const CLIENT_PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY;
+const PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY;
 
 // インタラクションエンドポイント
 app.post('/interactions', async (req, res) => {
@@ -100,7 +100,7 @@ app.post('/interactions', async (req, res) => {
   }
 
   // リクエストの検証
-  const isValidRequest = verifyKey(body, signature, timestamp, CLIENT_PUBLIC_KEY);
+  const isValidRequest = verifyKey(body, signature, timestamp, PUBLIC_KEY);
   if (!isValidRequest) {
     return res.status(401).send('Bad request signature');
   }
@@ -109,7 +109,10 @@ app.post('/interactions', async (req, res) => {
 
   // PINGへの応答
   if (interaction.type === InteractionType.PING) {
-    return res.send({ type: InteractionResponseType.PONG });
+    //PONG
+    const responseBody = { type: InteractionResponseType.PONG }
+    console.log("PONG response body:", JSON.stringify(responseBody));
+    return res.send(responseBody);
   }
 
   // スラッシュコマンドへの応答
