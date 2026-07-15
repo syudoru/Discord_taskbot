@@ -1,3 +1,4 @@
+/*
 //dotenvライブラリで.envファイル読み込み
 require("dotenv").config();
 
@@ -77,3 +78,57 @@ app.post("/interactions", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`)
 })
+*/
+
+const express = require('express');
+const { InteractionType, InteractionResponseType, verifyKey } = require('discord-interactions');
+
+const app = express();
+app.use(express.raw({ type: 'application/json' }));
+
+const CLIENT_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+
+// インタラクションエンドポイント
+app.post('/interactions', async (req, res) => {
+  const signature = req.get('X-Signature-Ed25519');
+  const timestamp = req.get('X-Signature-Timestamp');
+  const body = req.body;
+
+  if (!req.rawBody || !signature || !timestamp || !PUBLIC_KEY) {
+    //データ不備
+    return res.status(401).send("Invalid signature");
+  }
+
+  // リクエストの検証
+  const isValidRequest = verifyKey(body, signature, timestamp, CLIENT_PUBLIC_KEY);
+  if (!isValidRequest) {
+    return res.status(401).send('Bad request signature');
+  }
+
+  const interaction = JSON.parse(body.toString());
+
+  // PINGへの応答
+  if (interaction.type === InteractionType.PING) {
+    return res.send({ type: InteractionResponseType.PONG });
+  }
+
+  // スラッシュコマンドへの応答
+  if (interaction.type === InteractionType.APPLICATION_COMMAND) {
+    const { name } = interaction.data;
+
+    if (name === 'hello') {
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: 'こんにちは！HTTPインタラクションBotです！?'
+        }
+      });
+    }
+  }
+
+  res.status(400).send('Unknown interaction');
+});
+
+app.listen(8080, () => {
+  console.log('Server is running on port 8080');
+});
