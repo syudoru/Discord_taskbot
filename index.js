@@ -35,7 +35,7 @@ app.post("/interactions", (req, res) => {
 
   if (!req.rawBody || !signature || !timestamp || !PUBLIC_KEY) {
     //データ不備
-    return res.Status(400).send("Invalid signature");
+    return res.Status(401).send("Invalid signature");
   }
 
   try {
@@ -48,7 +48,7 @@ app.post("/interactions", (req, res) => {
 
     if (!isValid) {
       //署名不許可
-      return res.Status(401).send("Invalid signature");
+      return res.Status(401).send("invalid request signature");
     }
 
   } catch (err) {
@@ -60,13 +60,14 @@ app.post("/interactions", (req, res) => {
   //署名検証成功
   console.log("Signature verification succeeded.");
   //console.log(req.body);
-  console.log(req.rawBody.toString());
+  console.log(req.rawBody);
 
   //PING
-  if (req.body.type === 1) {
+  if (type === InteractionType.PING) {
     //PONG
     console.log("PONG");
-    return res.json({ type: 1 });
+    console.log(InteractionResponseType.PONG);
+    return res.send({ type: InteractionResponseType.PONG });
   }
 
   console.log("send 200");
