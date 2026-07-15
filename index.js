@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 //discord-interactionsƒ‰ƒCƒuƒ‰ƒŠ‚ÌverifyKey‚Ì‚Ý“Ç‚Ýž‚Ý
-const { InteractionType, InteractionResponseType, verifyKey } = require("discord-interactions");
+const { verifyKey } = require("discord-interactions");
 
 //ŠÂ‹«•Ï”Žæ“¾
 const PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY;
@@ -63,11 +63,10 @@ app.post("/interactions", (req, res) => {
   console.log(req.rawBody);
 
   //PING
-  if (type === InteractionType.PING) {
+  if (type === 1) {
     //PONG
     console.log("PONG");
-    console.log(InteractionResponseType.PONG);
-    return res.send({ type: InteractionResponseType.PONG });
+    return res.send({ type: 1 });
   }
 
   console.log("send 200");
