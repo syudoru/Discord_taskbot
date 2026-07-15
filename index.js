@@ -12,13 +12,12 @@ const { verifyKey } = require("discord-interactions");
 
 //環境変数取得
 const PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY;
-console.log(`public key: ${PUBLIC_KEY}`);
 
 //jsonの生データを読み出すよう設定
 app.use(
   express.json({
     verify: (req, res, buf) => {
-      req.rawBody = buf;
+      req.rawBody = buf.toString("utf8");
     },
   })
 );
@@ -36,19 +35,26 @@ app.post("/interactions", (req, res) => {
 
   if (!req.rawBody || !signature || !timestamp || !PUBLIC_KEY) {
     //データ不備
-    return res.sendStatus(400).send("Invalid signature");
+    return res.Status(400).send("Invalid signature");
   }
 
-  const isValid = verifyKey(
-    req.rawBody,
-    signature,
-    timestamp,
-    PUBLIC_KEY
-  );
+  try {
+    const isValid = verifyKey(
+      req.rawBody,
+      signature,
+      timestamp,
+      PUBLIC_KEY
+    );
 
-  if (!isValid) {
-    //署名不許可
-    return res.sendStatus(401).send("Invalid signature");
+    if (!isValid) {
+      //署名不許可
+      return res.Status(401).send("Invalid signature");
+    }
+
+  } catch (err) {
+    //署名検証エラー
+    console.error(err);
+    return res.sendStatus(401);
   }
 
   //署名検証成功
