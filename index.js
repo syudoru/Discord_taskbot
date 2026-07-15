@@ -63,7 +63,7 @@ app.post("/interactions", (req, res) => {
   console.log(req.rawBody);
 
   //PING
-  if (type === 1) {
+  if (req.body.type === 1) {
     //PONG
     console.log("PONG");
     return res.send({ type: 1 });
