@@ -2,8 +2,15 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-const publicKey = process.env.DISCORD_PUBLIC_KEY;
+app.use(
+  express.json({
+    verify: (req, res, buf) => {
+      req.rawBody = buf;
+    },
+  })
+);
 
+const publicKey = process.env.DISCORD_PUBLIC_KEY;
 console.log(`public key: ${publicKey}`);
 
 app.get("/", (req, res) => {
@@ -12,6 +19,9 @@ app.get("/", (req, res) => {
 
 app.post("/interactions", (req, res) =>{
   console.log("Interaction received");
+
+  console.log(req.body);
+  console.log(req.rawBody.toString());
 
   res.status(200).send("OK");
 })
