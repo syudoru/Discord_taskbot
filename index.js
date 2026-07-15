@@ -86,7 +86,7 @@ const { InteractionType, InteractionResponseType, verifyKey } = require('discord
 const app = express();
 app.use(express.raw({ type: 'application/json' }));
 
-const CLIENT_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+const CLIENT_PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY;
 
 // インタラクションエンドポイント
 app.post('/interactions', async (req, res) => {
