@@ -65,8 +65,9 @@ app.post("/interactions", (req, res) => {
   //PING
   if (req.body.type === 1) {
     //PONG
-    console.log("PONG");
-    return res.send({ type: 1 });
+    const responseBody = { type: 1 };
+    console.log("PONG response body:", JSON.stringify(responseBody));
+    return res.send(responseBody);
   }
 
   console.log("send 200");
