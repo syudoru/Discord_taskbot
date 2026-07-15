@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 //discord-interactionsライブラリのverifyKeyのみ読み込み
-const { verifyKey } = require("discord-interactions");
+const { InteractionType, InteractionResponseType, verifyKey } = require("discord-interactions");
 
 //環境変数取得
 const PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY;
@@ -35,7 +35,7 @@ app.post("/interactions", (req, res) => {
 
   if (!req.rawBody || !signature || !timestamp || !PUBLIC_KEY) {
     //データ不備
-    return res.Status(401).send("Invalid signature");
+    return res.status(401).send("Invalid signature");
   }
 
   try {
@@ -48,7 +48,7 @@ app.post("/interactions", (req, res) => {
 
     if (!isValid) {
       //署名不許可
-      return res.Status(401).send("invalid request signature");
+      return res.status(401).send("invalid request signature");
     }
 
   } catch (err) {
