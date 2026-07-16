@@ -102,7 +102,7 @@ app.post('/interactions', async (req, res) => {
   }
 
   // リクエストの検証
-  const isValidRequest = verifyKey(body, signature, timestamp, PUBLIC_KEY);
+  const isValidRequest = await verifyKey(body, signature, timestamp, PUBLIC_KEY);
   if (!isValidRequest) {
     return res.status(401).send('Bad request signature');
   }
