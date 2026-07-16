@@ -1,6 +1,8 @@
-/*
 //dotenvライブラリで.envファイル読み込み
 require("dotenv").config();
+
+//discord-interactionsライブラリのverifyKeyのみ読み込み
+const { InteractionType, InteractionResponseType, verifyKey } = require("discord-interactions");
 
 //expressライブラリ読み込み
 const express = require("express");
@@ -8,8 +10,6 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-//discord-interactionsライブラリのverifyKeyのみ読み込み
-const { verifyKey } = require("discord-interactions");
 
 //環境変数取得
 const PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY;
@@ -27,20 +27,21 @@ app.get("/", (req, res) => {
   res.send("Discord Task Bot is running.");
 });
 
-app.post("/interactions", (req, res) => {
+app.post("/interactions", async (req, res) => {
   console.log("Interaction received");
 
-  //discordの署名検証
+  //署名とタイムスタンプ読み込み
   const signature = req.get("X-Signature-Ed25519");
   const timestamp = req.get("X-Signature-Timestamp");
 
   if (!req.rawBody || !signature || !timestamp || !PUBLIC_KEY) {
     //データ不備
-    return res.status(401).send("Invalid signature");
+    return res.status(401).send("Insufficient data");
   }
 
+  //discordの署名検証
   try {
-    const isValid = verifyKey(
+    const isValid = await verifyKey(
       req.rawBody,
       signature,
       timestamp,
@@ -63,12 +64,12 @@ app.post("/interactions", (req, res) => {
   //console.log(req.body);
   console.log(req.rawBody);
 
-  //PING
-  if (req.body.type === 1) {
+  // PING
+  if (interaction.type === InteractionType.PING) {
     //PONG
-    const responseBody = { type: 1 };
+    const responseBody = { type: InteractionResponseType.PONG }
     console.log("PONG response body:", JSON.stringify(responseBody));
-    return res.send(responseBody);
+    return res.json(responseBody);
   }
 
   console.log("send 200");
@@ -78,8 +79,10 @@ app.post("/interactions", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`)
 })
-*/
 
+
+
+/*
 const express = require('express');
 const { InteractionType, InteractionResponseType, verifyKey } = require('discord-interactions');
 
@@ -140,3 +143,4 @@ app.post('/interactions', async (req, res) => {
 app.listen(8080, () => {
   console.log('Server is running on port 8080');
 });
+*/
