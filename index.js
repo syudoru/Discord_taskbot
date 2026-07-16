@@ -1,3 +1,5 @@
+/*
+
 //dotenvライブラリで.envファイル読み込み
 require("dotenv").config();
 
@@ -80,34 +82,45 @@ app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`)
 })
 
+*/
 
-
-/*
+//dotenvライブラリで.envファイル読み込み
+require("dotenv").config();
+//expressライブラリ読み込み
 const express = require('express');
+//discord-interactionsライブラリのインタラクションタイプとverifyKeyのみ読み込み
 const { InteractionType, InteractionResponseType, verifyKey } = require('discord-interactions');
 
 const app = express();
 app.use(express.raw({ type: 'application/json' }));
 
 const PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY;
+const PORT = process.env.PORT || 8080;
 
 // インタラクションエンドポイント
 app.post('/interactions', async (req, res) => {
   console.log("Interaction received");
 
+  //署名とタイムスタンプ取得
   const signature = req.get('X-Signature-Ed25519');
   const timestamp = req.get('X-Signature-Timestamp');
   const body = req.body;
 
   if (!body || !signature || !timestamp || !PUBLIC_KEY) {
     //データ不備
-    return res.status(401).send("Invalid signature");
+    return res.status(401).send("Insufficient data");
   }
 
-  // リクエストの検証
-  const isValidRequest = await verifyKey(body, signature, timestamp, PUBLIC_KEY);
-  if (!isValidRequest) {
-    return res.status(401).send('Bad request signature');
+  //署名検証
+  try {
+    const isValidRequest = await verifyKey(body, signature, timestamp, PUBLIC_KEY);
+    if (!isValidRequest) {
+      return res.status(401).send('Bad request signature');
+    }
+  } catch (err) {
+    //署名検証エラー
+    console.error(err);
+    return res.sendStatus(401);
   }
 
   //署名検証成功
@@ -140,7 +153,7 @@ app.post('/interactions', async (req, res) => {
   res.status(400).send('Unknown interaction');
 });
 
-app.listen(8080, () => {
-  console.log('Server is running on port 8080');
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`)
 });
-*/
+
