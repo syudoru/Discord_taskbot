@@ -1,7 +1,7 @@
 const { InteractionType } = require("discord-interactions");
 const pingCommand = require("../commands/ping");
 
-function handleInteraction(req, res) {
+async function handleInteraction(req, res) {
   console.log("Interaction received");
 
   //本文取得
