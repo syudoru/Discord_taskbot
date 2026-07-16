@@ -4,7 +4,7 @@ const { InteractionResponseType } = require("discord-interactions");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("ping")
-    .setDescription("Pong!ã‚’è¿”ã—ã¾ã™"),
+    .setDescription("Pong!‚ğ•Ô‚µ‚Ü‚·"),
 
   async execute(req, res) {
     res.send({
