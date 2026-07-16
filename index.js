@@ -117,7 +117,7 @@ app.post('/interactions', async (req, res) => {
     //PONG
     const responseBody = { type: InteractionResponseType.PONG }
     console.log("PONG response body:", JSON.stringify(responseBody));
-    return res.send(responseBody);
+    return res.json(responseBody);
   }
 
   // スラッシュコマンドへの応答
