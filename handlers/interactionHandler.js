@@ -1,4 +1,5 @@
 const path = require("node:path");
+const { ApplicationCommandOptionType } = require("discord.js");
 const { InteractionType } = require("discord-interactions");
 const pingCommand = require("../commands/ping");
 
@@ -22,6 +23,17 @@ async function handleInteraction(req, res) {
       //存在しないコマンド
       res.status(400).send("Unknown command");
       return;
+    }
+
+    const firstOption = interaction.data.option?.[0];
+
+    if (firstOption && firstOption.type === ApplicationCommandOptionType.Subcommand && command.subcommands) {
+      const subcommand = command.subcommands[firstOption.name];
+      if (!subcommand) {
+        return res.status(400).send("Unknown subcommand");
+      }
+      const response = subcommand.execute(interaction);
+      return res.send(response);
     }
 
     //コマンド実行
