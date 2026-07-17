@@ -1,5 +1,7 @@
 const { SlashCommandBuilder } = require("discord.js");
 
+console.log(isNaN(parseInt("100.3")));
+
 const pingCommand = {
   data: new SlashCommandBuilder()
     .setName("ping")
