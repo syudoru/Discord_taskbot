@@ -18,7 +18,9 @@ const PORT = process.env.PORT || 8080;
 app.post(
   "/interactions",
   verifyKeyMiddleware(CLIENT_PUBLIC_KEY),
-  interactionHandler.handleInteraction(req, res)
+  async (req, res) => {
+    await interactionHandler.handleInteraction(req, res);
+  }
 );
 
 app.listen(PORT, () => {
