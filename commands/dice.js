@@ -4,31 +4,26 @@ const { InteractionResponseType } = require("discord-interactions");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("dice")
-    .setDescription("さいころを振ります(最大値を指定できます)"),
+    .setDescription("さいころを振ります(最大値を指定できます)")
+    .addIntegerOption(option =>
+      option
+        .setName("max")
+        .setDescription("最大値")
+        .setRequired(false)
+    ),
 
   async execute(interaction) {
-    let diceMax = 6;
-    console.log(interaction);
-    const value = interaction.data.options[0].value;
-    const reqNum = parseInt(value);
-    if (value !== "") {
-      diceMax = reqNum;
-    }
-    if (isNaN(diceMax)) {
-      return {
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: { content: "整数を入力してください" }
-      };
-    }
-    if (diceMax <= 0) {
+    const diceMax = interaction.data.option?.[0]?.value ?? 6;
+    if (diceMax < 1) {
       return {
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: { content: "1以上の整数を入力してください" }
       };
     }
+    const result = Math.floor(Math.random() * diceMax) + 1;
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: { content: Math.floor(Math.random() * diceMax) + 1 }
+      data: { content: result }
     };
   }
 }
