@@ -4,7 +4,7 @@ const { InteractionResponseType } = require("discord-interactions");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("dice")
-    .setDescription("さいころを振ります(最大値を指定できます)")
+    .setDescription("さいころを振ります")
     .addIntegerOption(option =>
       option
         .setName("max")
@@ -13,7 +13,7 @@ module.exports = {
     ),
 
   async execute(interaction) {
-    const diceMax = interaction.data.option?.[0]?.value ?? 6;
+    const diceMax = interaction.data.options?.[0]?.value ?? 6;
     if (diceMax < 1) {
       return {
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
