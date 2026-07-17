@@ -6,10 +6,10 @@ module.exports = {
     .setName("ping")
     .setDescription("Pong!を返します"),
 
-  async execute(req, res) {
-    res.send({
+  async execute(interaction) {
+    return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: { content: "Pong!" }
-    });
+    };
   }
 }

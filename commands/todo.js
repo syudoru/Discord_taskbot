@@ -6,10 +6,10 @@ module.exports = {
     .setName("todo")
     .setDescription("To-Doリストを管理します"),
 
-  async execute(req, res) {
-    res.send({
+  async execute(interaction) {
+    return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: { content: "これから作る" }
-    });
+    };
   }
 }

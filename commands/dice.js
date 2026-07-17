@@ -6,30 +6,29 @@ module.exports = {
     .setName("dice")
     .setDescription("さいころを振ります(最大値を指定できます)"),
 
-  async execute(req, res) {
+  async execute(interaction) {
     let diceMax = 6;
-    console.log(req)
-    const reqNum = parseInt(req.body);
-    if (req.body !== "") {
+    console.log(interaction);
+    const value = interaction.data.options[0].value;
+    const reqNum = parseInt(value);
+    if (value !== "") {
       diceMax = reqNum;
     }
     if (isNaN(diceMax)) {
-      res.send({
+      return {
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: { content: "整数を入力してください" }
-      })
-      return;
+      };
     }
     if (diceMax <= 0) {
-      res.send({
+      return {
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: { content: "1以上の整数を入力してください" }
-      })
-      return;
+      };
     }
-    res.send({
+    return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: { content: Math.floor(Math.random() * diceMax) + 1 }
-    });
+    };
   }
 }

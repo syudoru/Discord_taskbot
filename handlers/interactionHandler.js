@@ -21,10 +21,12 @@ async function handleInteraction(req, res) {
     if (!command) {
       //存在しないコマンド
       res.status(400).send("Unknown command");
+      return;
     }
 
     //コマンド実行
-    await command.execute(req, res);
+    const response = await command.execute(interaction);
+    return res.send(response);
   }
 
   res.status(400).send("Unknown interaction");
