@@ -1,3 +1,4 @@
+const path = require("node:path");
 const { InteractionType } = require("discord-interactions");
 const pingCommand = require("../commands/ping");
 
@@ -24,7 +25,6 @@ async function handleInteraction(req, res) {
 
     //コマンド実行
     await command.execute(req, res);
-
   }
 
   res.status(400).send("Unknown interaction");

@@ -1,7 +1,6 @@
 require("dotenv").config();
 const { REST, Routes, SlashCommandBuilder } = require("discord.js");
 const path = require("node:path");
-const fs = require("node:fs");
 
 const TOKEN = process.env.DISCORD_TOKEN;
 const BOT_ID = process.env.DISCORD_APP_ID;
