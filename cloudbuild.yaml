@@ -1,0 +1,26 @@
+steps:
+  #Dockerイメージをビルド
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/discord-task-bot/discord-taskbot-image:$COMMIT_SHA', '.']
+
+  #Artifact RefistryへPush
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/discord-task-bot/discord-taskbot-image:$COMMIT_SHA']
+
+  #Cloud Runにデプロイ
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: 
+    - run
+    - deploy
+    - discord-task-bot
+    - --image
+    - asia-northeast1-docker.pkg.dev/${PROJECT_ID}/discord-task-bot/discord-taskbot-image:$COMMIT_SHA
+    - --region
+    - asia-northeast1
+    - --platform
+    - managed
+    - --quiet
+
+images:
+  - asia-northeast1-docker.pkg.dev/${PROJECT_ID}/discord-task-bot/discord-taskbot-image:$COMMIT_SHA
