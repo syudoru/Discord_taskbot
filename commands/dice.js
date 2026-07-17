@@ -4,7 +4,7 @@ const { InteractionResponseType } = require("discord-interactions");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("dice")
-    .setDescription("さいころを振ります"),
+    .setDescription("さいころを振ります(最大値を指定できます)"),
 
   async execute(req, res) {
     let diceMax = 6;
