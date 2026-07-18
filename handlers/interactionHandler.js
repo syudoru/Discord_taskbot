@@ -26,7 +26,7 @@ async function handleInteraction(req, res) {
     }
 
     const firstOption = interaction.data.options?.[0];
-    console.log(interaction);
+    console.log(firstOption);
 
     if (firstOption && firstOption.type === ApplicationCommandOptionType.Subcommand && command.subcommands) {
       const subcommand = command.subcommands[firstOption.name];
