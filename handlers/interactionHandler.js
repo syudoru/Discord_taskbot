@@ -41,4 +41,4 @@ async function handleInteraction(req, res) {
   res.status(400).send("Unknown interaction");
 }
 
-export default handleInteraction;
+export { handleInteraction };

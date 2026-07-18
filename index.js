@@ -6,7 +6,7 @@ import express from "express";
 import { verifyKeyMiddleware } from "discord-interactions";
 
 //コマンド振り分け
-import interactionHandler from "./handlers/interactionHandler.js";
+import { handleInteraction } from "./handlers/interactionHandler.js";
 
 const app = express();
 app.use(express.raw({ type: 'application/json' }));
@@ -23,11 +23,10 @@ app.post(
   "/interactions",
   verifyKeyMiddleware(CLIENT_PUBLIC_KEY),
   async (req, res) => {
-    await interactionHandler.handleInteraction(req, res);
+    await handleInteraction(req, res);
   }
 );
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`)
 });
-
