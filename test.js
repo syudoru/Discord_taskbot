@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+import SlashCommandBuilder from "discord.js";
 
 console.log(isNaN(parseInt("100.3")));
 

@@ -1,5 +1,9 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath, pathToFileURL } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const commands = new Map();
 //コマンドファイルパス取得
@@ -22,7 +26,10 @@ for (const entry of entries) {
   } else {
     continue;
   }
-  const command = require(filePath);
+
+  const { default: command } = await import(
+    pathToFileURL(filePath).href
+  );
 
   if ("data" in command && ("execute" in command || "subcommands" in command)) {
     commands.set(command.data.name, command)
@@ -33,4 +40,4 @@ for (const entry of entries) {
 
 //console.log(commands);
 
-module.exports = commands;
+export default commands;

@@ -1,18 +1,13 @@
-const path = require("node:path");
-const { ApplicationCommandOptionType } = require("discord.js");
-const { InteractionType } = require("discord-interactions");
-const pingCommand = require("../commands/ping");
+import { ApplicationCommandOptionType } from "discord.js";
+import { InteractionType } from "discord-interactions";
+//コマンドMap取得
+import commands from "../loaders/commandLoader.js";
 
 async function handleInteraction(req, res) {
   console.log("Interaction received");
 
   //本文取得
   const interaction = req.body;
-  const commandLoaderPath = path.join(__dirname, "../loaders/commandLoader.js");
-
-  console.log(commandLoaderPath);
-  //コマンドMap取得
-  const commands = require(commandLoaderPath);
 
   //コマンドの場合
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
@@ -46,6 +41,4 @@ async function handleInteraction(req, res) {
   res.status(400).send("Unknown interaction");
 }
 
-module.exports = {
-  handleInteraction
-};
+export default handleInteraction;

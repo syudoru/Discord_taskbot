@@ -1,7 +1,7 @@
-const { SlashCommandSubcommandBuilder } = require("discord.js");
-const { InteractionResponseType } = require("discord-interactions");
+import { SlashCommandSubcommandBuilder } from "discord.js";
+import { InteractionResponseType } from "discord-interactions";
 
-module.exports = {
+export default {
   data: new SlashCommandSubcommandBuilder()
     .setName("remove")
     .setDescription("タスクを削除します")

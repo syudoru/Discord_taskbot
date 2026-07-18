@@ -1,7 +1,11 @@
-const fs = require("fs");
-const path = require("path");
-const { SlashCommandBuilder } = require("discord.js");
-const { InteractionResponseType } = require("discord-interactions");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath, pathToFileURL } from "url";
+import { SlashCommandBuilder } from "discord.js";
+import { InteractionResponseType } from "discord-interactions";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const subcommands = {};
 const builder = new SlashCommandBuilder()
@@ -13,14 +17,17 @@ const subcommandFiles = fs
   .filter(file => file.endsWith(".js") && file != "index.js");
 
 for (const file of subcommandFiles) {
-  const subcommand = require(path.join(__dirname, file));
+
+  const { default: subcommand } = await import(
+    pathToFileURL(path.join(__dirname, file)).href
+  );
   const name = subcommand.data.name;
 
   subcommands[name] = subcommand;
   builder.addSubcommand(subcommand.data);
 }
 
-module.exports = {
+export default {
   data: builder,
   subcommands
 }

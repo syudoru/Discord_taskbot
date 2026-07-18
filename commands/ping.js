@@ -1,7 +1,8 @@
-const { SlashCommandBuilder } = require("discord.js");
-const { InteractionResponseType } = require("discord-interactions");
+import { SlashCommandBuilder } from "discord.js";
+import { InteractionResponseType } from "discord-interactions";
 
-module.exports = {
+
+export default {
   data: new SlashCommandBuilder()
     .setName("ping")
     .setDescription("Pong!を返します"),

@@ -1,13 +1,11 @@
-require("dotenv").config();
-const { REST, Routes, SlashCommandBuilder } = require("discord.js");
-const path = require("node:path");
+import dotenv from "dotenv/config";
+import { REST, Routes, SlashCommandBuilder } from "discord.js";
 
 const TOKEN = process.env.DISCORD_TOKEN;
 const BOT_ID = process.env.DISCORD_APP_ID;
 const GUILD_ID = process.env.DISCORD_GUILD_ID;
 
-const commandLoaderPath = path.join(__dirname, "../loaders/commandLoader.js");
-const commands = require(commandLoaderPath);
+import commands from "../loaders/commandLoader.js";
 //data要素取り出し
 const commandsData = [...commands.values()].map(command => command.data);
 
