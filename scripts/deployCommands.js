@@ -30,5 +30,6 @@ const rest = new REST({ version: "10" }).setToken(TOKEN);
   }
   catch (error) {
     console.error(error);
+    throw error;
   }
 })();
