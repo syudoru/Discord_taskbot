@@ -1,12 +1,12 @@
 steps:
 
   # 依存関係のインストール
-  - name: 'node:24'
+  - name: 'node:24-slim'
     entrypoint: npm
     args: ['ci']
 
   # Discordコマンド登録
-  - name: 'node:24'
+  - name: 'node:24-slim'
     entrypoint: node
     args: ['scripts/deployCommands.js']
 
