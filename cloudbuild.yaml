@@ -8,7 +8,7 @@ steps:
   # Discordコマンド登録
   - name: 'node:24-slim'
     entrypoint: node
-    args: ['scripts/deployCommands.js']
+    args: ['./scripts/deployCommands.js']
 
   #Dockerイメージをビルド
   - name: 'gcr.io/cloud-builders/docker'
