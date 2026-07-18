@@ -9,6 +9,10 @@ steps:
   - name: 'node:24-slim'
     entrypoint: node
     args: ['scripts/deployCommands.js']
+    secretEnv: 
+      - DISCORD_TOKEN
+      - DISCORD_APP_ID
+      - DISCORD_GUILD_ID
 
   #Dockerイメージをビルド
   - name: 'gcr.io/cloud-builders/docker'
@@ -39,3 +43,14 @@ images:
 timeout: 500s
 options:
   logging: CLOUD_LOGGING_ONLY
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/$PROJECT_ID/secrets/DISCORD_TOKEN/versions/latest
+      env: DISCORD_TOKEN
+
+    - versionName: projects/$PROJECT_ID/secrets/DISCORD_APP_ID/versions/latest
+      env: DISCORD_APP_ID
+
+    - versionName: projects/$PROJECT_ID/secrets/DISCORD_GUILD_ID/versions/latest
+      env: DISCORD_GUILD_ID
