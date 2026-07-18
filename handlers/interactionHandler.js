@@ -25,6 +25,8 @@ async function handleInteraction(req, res) {
       return;
     }
 
+    console.log(interaction);
+
     const firstOption = interaction.data.option?.[0];
 
     if (firstOption && firstOption.type === ApplicationCommandOptionType.Subcommand && command.subcommands) {
@@ -32,6 +34,7 @@ async function handleInteraction(req, res) {
       if (!subcommand) {
         return res.status(400).send("Unknown subcommand");
       }
+      //サブコマンド実行
       const response = subcommand.execute(interaction);
       return res.send(response);
     }
