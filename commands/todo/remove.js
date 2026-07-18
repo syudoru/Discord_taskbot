@@ -3,7 +3,7 @@ const { InteractionResponseType } = require("discord-interactions");
 
 module.exports = {
   data: new SlashCommandSubcommandBuilder()
-    .setName("add")
+    .setName("remove")
     .setDescription("タスクを削除します")
     .addIntegerOption(option =>
       option

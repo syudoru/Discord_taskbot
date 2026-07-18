@@ -46,11 +46,11 @@ options:
 
 availableSecrets:
   secretManager:
-    - versionName: projects/$PROJECT_ID/secrets/DISCORD_TOKEN/versions/latest
+    - versionName: projects/${PROJECT_ID}/secrets/DISCORD_TOKEN/versions/latest
       env: DISCORD_TOKEN
 
-    - versionName: projects/$PROJECT_ID/secrets/DISCORD_APP_ID/versions/latest
+    - versionName: projects/${PROJECT_ID}/secrets/DISCORD_APP_ID/versions/latest
       env: DISCORD_APP_ID
 
-    - versionName: projects/$PROJECT_ID/secrets/DISCORD_GUILD_ID/versions/latest
+    - versionName: projects/${PROJECT_ID}/secrets/DISCORD_GUILD_ID/versions/latest
       env: DISCORD_GUILD_ID
