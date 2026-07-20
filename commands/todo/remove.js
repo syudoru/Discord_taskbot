@@ -8,7 +8,7 @@ export default {
     .addIntegerOption(option =>
       option
         .setName("task")
-        .setDescription("削除するタスクの番号")
+        .setDescription("削除するタスクの番号 (最後に表示したタスクリストについている番号を入力してください)")
         .setRequired(true)
     ),
   async execute(interaction) {

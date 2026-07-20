@@ -39,7 +39,7 @@ export async function SetOptions(userId, options) {
 
     //オプションが存在しないときの処理を加える。
 
-    console.log("オプション更新完了");
+    console.log("ユーザーオプション更新完了");
     return;
   }
   catch (error) {
@@ -50,7 +50,7 @@ export async function SetOptions(userId, options) {
 
 async function CreateOptions(userId) {
   await getUserDataCollection(userId).doc("options").set(optionPreset);
-  console.log("オプションを新規作成しました");
+  console.log("ユーザーオプションを新規作成しました");
   return;
 }
 
@@ -78,7 +78,7 @@ export async function SetLog(userId, title, log) {
     //logsドキュメント取得
     let logs = await getUserDataCollection(userId).doc("logs").set({ [title]: log });
 
-    console.log("ログ追加完了")
+    console.log(`ログ追加完了: ${title}`)
     return;
   }
   catch (error) {

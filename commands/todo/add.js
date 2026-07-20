@@ -10,7 +10,7 @@ export default {
     .addStringOption(option =>
       option
         .setName("title")
-        .setDescription("追加するタスク名")
+        .setDescription("タスク名")
         .setRequired(true)
     )
     .addStringOption(option =>
@@ -33,7 +33,7 @@ export default {
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: "タスクを追加しました",
+        content: `タスクを追加しました タスク名: ${taskData.title}`,
         flags: MessageFlags.Ephemeral
       }
     };

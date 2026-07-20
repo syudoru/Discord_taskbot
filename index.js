@@ -1,7 +1,3 @@
-const startupTime = Date.now();
-
-console.log("[STARTUP] index.js loaded");
-
 //dotenvライブラリのconfig()を実行し、.envファイルを読み込む
 import dotenv from "dotenv/config";
 //expressライブラリ取得
@@ -33,5 +29,4 @@ app.post(
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
-  console.log(`Startup: ${Date.now() - startupTime} ms`);
 });

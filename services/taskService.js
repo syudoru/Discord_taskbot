@@ -22,7 +22,7 @@ export async function createTask(userId, taskData) {
         updatedAt: now
       });
 
-    console.log("タスク追加完了");
+    console.log(`タスク追加完了 タスクID: ${docRef.id}`);
     return docRef.id;
   }
   catch (error) {
@@ -51,6 +51,7 @@ export async function getTasks(userId, filters = {}) {
   //タスクリストのスナップショットを取得
   const snapshot = await query.get();
 
+  console.log(`タスクリストを取得`);
   //タスクIDを追記、形式を整える
   return snapshot.docs.map(doc => ({
     id: doc.id,
@@ -71,7 +72,7 @@ export async function updateTask(userId, taskId, taskData) {
   try {
     await getTaskCollection(userId).doc(taskId).update(taskData);
 
-    console.log("タスク更新完了");
+    console.log(`タスク更新完了 タスクID: ${taskId}`);
     return taskId;
   }
   catch (error) {
@@ -96,14 +97,14 @@ export async function deleteTask(userId, taskId) {
 
     //指定タスクが存在しない場合はfalseを返す
     if (!snapshot.exists) {
-      console.log("指定タスクが存在しません");
+      console.log("削除: 指定タスクが存在しません");
       return false;
     }
 
     //タスク削除
     await taskref.doc(taskId).delete();
 
-    console.log("タスク削除完了");
+    console.log(`タスク削除完了 タスクID: ${taskId}`);
     return true;
   }
   catch (error) {
