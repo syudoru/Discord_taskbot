@@ -13,7 +13,7 @@ export default {
     ),
   async execute(interaction) {
 
-    //タスク追加処理
+    //タスク削除処理
 
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
