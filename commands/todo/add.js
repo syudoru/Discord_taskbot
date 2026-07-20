@@ -1,5 +1,7 @@
 import { SlashCommandSubcommandBuilder } from "discord.js";
 import { InteractionResponseType } from "discord-interactions";
+import { } from "../../services/taskService.js";
+import db from "../../services\/firestore.js";
 
 export default {
   data: new SlashCommandSubcommandBuilder()
@@ -8,12 +10,18 @@ export default {
     .addStringOption(option =>
       option
         .setName("task")
-        .setDescription("追加するタスクの内容")
+        .setDescription("追加するタスク名")
         .setRequired(true)
+    )
+    .addStringOption(option =>
+      option
+        .setName("description")
+        .setDescription("タスクの説明")
+        .setRequired(false)
     ),
-  execute(interaction) {
+  async execute(interaction) {
+    console.log(interaction.data.options);
 
-    //タスク追加処理
 
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,

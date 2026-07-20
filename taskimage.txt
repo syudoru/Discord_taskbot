@@ -1,0 +1,33 @@
+users
+- ユーザーID
+  - tasks
+    - タスクID(自動生成)
+      - タスク名: title: string
+      - タスク説明: description: string
+      - タスク状態: status: string{todo, doing, done, archived}
+      - 作成日時: createAt: timestamp
+//以下の実装は後日
+      - 表示順: order: int(100刻み、詰まってきたら100刻みに振りなおす)
+      - 優先度: priority: int(10～50、10刻み)
+      - 通知: 
+      - カテゴリー: 
+      - 〆切: 
+      - 更新日時: 
+  - userData
+    - option
+      - デフォルト優先度
+      - デフォルトカテゴリー
+      - カテゴリーリスト
+      - その他デフォルト設定
+    - log
+      - 最終リストの順番: lastList: [int(番号), string(タスクID)]
+
+//以下の実装は後日
+sharedTasks
+- タスクID(自動生成)
+  - taskと同様
+  - ユーザーリスト
+  - 作成者
+  - 最終更新者
+
+
