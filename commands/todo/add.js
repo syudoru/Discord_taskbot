@@ -33,7 +33,7 @@ export default {
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: `タスクを追加しました タスク名: ${taskData.title}`,
+        content: `タスクを追加しました (タスク名: ${taskData.title})`,
         flags: MessageFlags.Ephemeral
       }
     };
