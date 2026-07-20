@@ -19,7 +19,7 @@ export default {
       taskIdList[i] = taskList[i].id;
     }
 
-    await SetLog(userId, "lastTaskList", taskList);
+    await SetLog(userId, "lastTaskList", taskIdList);
 
     const message = taskList
       .map((task, index) => `${index + 1}. ${task.title}`)
