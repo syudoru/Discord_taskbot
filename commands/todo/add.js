@@ -32,7 +32,10 @@ export default {
 
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: { content: "タスクを追加しました" }
+      data: {
+        content: "タスクを追加しました",
+        flags: MessageFlags.Ephemeral
+      }
     };
   }
 }
