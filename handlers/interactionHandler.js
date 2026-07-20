@@ -29,7 +29,7 @@ async function handleInteraction(req, res) {
         return res.status(400).send("Unknown subcommand");
       }
       //サブコマンド実行
-      const response = subcommand.execute(interaction);
+      const response = await subcommand.execute(interaction);
       return res.send(response);
     }
 

@@ -11,7 +11,7 @@ export default {
         .setDescription("削除するタスクの番号")
         .setRequired(true)
     ),
-  execute(interaction) {
+  async execute(interaction) {
 
     //タスク追加処理
 
