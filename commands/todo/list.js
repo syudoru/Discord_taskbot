@@ -1,4 +1,4 @@
-import { SlashCommandSubcommandBuilder } from "discord.js";
+import { MessageFlags, SlashCommandSubcommandBuilder } from "discord.js";
 import { InteractionResponseType } from "discord-interactions";
 import { createTask, getTasks } from "../../services/taskService.js";
 import { SetLog } from "../../services/userDataService.js";
@@ -27,7 +27,10 @@ export default {
 
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: { content: message }
+      data: {
+        content: message,
+        flags: MessageFlags.Ephemeral
+      }
     };
   }
 }
