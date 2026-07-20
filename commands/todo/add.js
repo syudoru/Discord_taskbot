@@ -20,7 +20,7 @@ export default {
         .setRequired(false)
     ),
   async execute(interaction) {
-    console.log(interaction.data.options[0].options);
+    const userId = interaction.member.user.id ?? interaction.user.id;
 
     let taskData = {};
 
@@ -28,7 +28,7 @@ export default {
       taskData[option.name] = option.value;
     }
 
-    await createTask(interaction.user.id, taskData);
+    await createTask(userId, taskData);
 
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
