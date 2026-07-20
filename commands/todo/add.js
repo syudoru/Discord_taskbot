@@ -20,7 +20,11 @@ export default {
         .setRequired(false)
     ),
   async execute(interaction) {
-    console.log(interaction.data.options);
+    console.log(interaction.data.options[0].options);
+
+    for (const option of interaction.data.options[0].options) {
+      console.log(option);
+    }
 
 
     return {
