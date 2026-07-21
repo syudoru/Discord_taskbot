@@ -2,7 +2,7 @@
 import { InteractionType } from "discord-interactions";
 
 console.log("4.1: discord.js start");
-const { ApplicationCommandOptionType } = import("discord.js");
+const { ApplicationCommandOptionType } = await import("discord.js");
 console.log("4.2: discord.js end");
 
 //コマンドMap取得
