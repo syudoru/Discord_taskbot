@@ -1,6 +1,6 @@
 import dotenv from "dotenv/config";
 import { REST } from "@discordjs/rest";
-import { Routes } from "discord-api-types";
+import { Routes } from "discord-api-type/v10";
 import { SlashCommandBuilder } from "@discordjs/builders";
 
 const TOKEN = process.env.DISCORD_TOKEN;
