@@ -6,7 +6,7 @@ await import("dotenv/config");
 console.log("2: dotenv.config() imported");
 //expressライブラリ取得
 //import express from "express";
-const express = await import("express");
+const { default: express } = await import("express");
 console.log("3: express imported");
 //discord-interactionsライブラリでverifyKeyMiddleware取得
 //import { verifyKeyMiddleware } from "discord-interactions";
