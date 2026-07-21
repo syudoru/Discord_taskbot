@@ -1,12 +1,16 @@
 //import { ApplicationCommandOptionType } from "discord.js";
 import { InteractionType } from "discord-interactions";
 
-console.log("4.1: discord.js start");
+console.log("4.1: commandLoader.js start");
 const { ApplicationCommandOptionType } = await import("discord.js");
-console.log("4.2: discord.js end");
+console.log("4.2: commandLoader.js end");
+
+console.log("4.3: commandLoader.js start");
+const commands = await import("../loaders/commandLoader.js");
+console.log("4.4: commandLoader.js end");
 
 //コマンドMap取得
-import commands from "../loaders/commandLoader.js";
+//import commands from "../loaders/commandLoader.js";
 
 async function handleInteraction(req, res) {
   console.log("Interaction received");
