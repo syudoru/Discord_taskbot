@@ -21,7 +21,6 @@ export default {
       if (option.name == "task") {
         taskNum = option.value - 1;
       }
-      taskData[option.name] = option.value;
     }
     const taskId = taskIdList[taskNum];
 
