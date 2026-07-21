@@ -1,5 +1,6 @@
 import { SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import { InteractionResponseType } from "discord-interactions";
+import { GetLog } from "../../services/userDataService";
 
 export default {
   data: new SlashCommandSubcommandBuilder()
@@ -12,8 +13,19 @@ export default {
         .setRequired(true)
     ),
   async execute(interaction) {
+    const userId = interaction.member.user.id ?? interaction.user.id;
 
-    //タスク削除処理
+    const taskIdList = await GetLog(userId, "lastTaskList");
+    let taskNum = "";
+    for (const option of interaction.data.options[0].options) {
+      if (option.name == "task") {
+        taskNum = option.value - 1;
+      }
+      taskData[option.name] = option.value;
+    }
+    const taskId = taskIdList[taskNum];
+
+    console.log(taskId);
 
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
