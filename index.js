@@ -15,7 +15,7 @@ console.log("4: discord-interactions imported");
 
 //コマンド振り分け
 //import { handleInteraction } from "./handlers/interactionHandler.js";
-const { handleInteraction } = await import("./handlers/interactionHandler.js");
+//const { handleInteraction } = await import("./handlers/interactionHandler.js");
 console.log("5: interactionHandler.js imported");
 
 const app = express();
@@ -29,6 +29,7 @@ if (!CLIENT_PUBLIC_KEY) {
 }
 
 //POST
+/*
 app.post(
   "/interactions",
   verifyKeyMiddleware(CLIENT_PUBLIC_KEY),
@@ -36,6 +37,7 @@ app.post(
     await handleInteraction(req, res);
   }
 );
+*/
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
