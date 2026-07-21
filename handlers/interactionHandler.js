@@ -6,7 +6,8 @@ const { ApplicationCommandOptionType } = await import("discord.js");
 console.log("4.2: commandLoader.js end");
 
 console.log("4.3: commandLoader.js start");
-const commands = await import("../loaders/commandLoader.js");
+const commandsModule = await import("../loaders/commandLoader.js");
+const commands = commandsModule.default;
 console.log("4.4: commandLoader.js end");
 
 //コマンドMap取得
