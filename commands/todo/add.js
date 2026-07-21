@@ -2,7 +2,6 @@ import { SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import { InteractionResponseType } from "discord-interactions";
 import { MessageFlags } from "discord-api-types/v10";
 import { createTask } from "../../services/taskService.js";
-import db from "../../services\/firestore.js";
 
 export default {
   data: new SlashCommandSubcommandBuilder()

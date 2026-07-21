@@ -1,5 +1,7 @@
 import { SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import { InteractionResponseType } from "discord-interactions";
+import { MessageFlags } from "discord-api-types/v10";
+import { deleteTask } from "../../services/taskService.js";
 import { GetLog } from "../../services/userDataService.js";
 
 export default {
@@ -23,12 +25,23 @@ export default {
       }
     }
     const taskId = taskIdList[taskNum];
-
-    console.log(taskId);
-
+    const resutl = await deleteTask(userId, taskId);
+    if (resutl) {
+      return {
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: `タスクを削除しました`,
+          flags: MessageFlags.Ephemeral
+        }
+      };
+    }
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: { content: "タスクを削除する予定" }
-    }
+      data: {
+        content: `タスクが見つかりませんでした`,
+        flags: MessageFlags.Ephemeral
+      }
+    };
+
   }
 }
