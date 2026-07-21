@@ -1,6 +1,6 @@
 import { SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import { InteractionResponseType } from "discord-interactions";
-import { GetLog } from "../../services/userDataService";
+import { GetLog } from "../../services/userDataService.js";
 
 export default {
   data: new SlashCommandSubcommandBuilder()
