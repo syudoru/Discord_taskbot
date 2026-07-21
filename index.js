@@ -1,13 +1,16 @@
 console.log("1: index.js start");
 
 //dotenvライブラリのconfig()を実行し、.envファイルを読み込む
-import dotenv from "dotenv/config";
+//import dotenv from "dotenv/config";
+await import("dotenv/config");
 console.log("2: dotenv.config() imported");
 //expressライブラリ取得
-import express from "express";
+//import express from "express";
+const express = import("express");
 console.log("3: express imported");
 //discord-interactionsライブラリでverifyKeyMiddleware取得
-import { verifyKeyMiddleware } from "discord-interactions";
+//import { verifyKeyMiddleware } from "discord-interactions";
+const { verifyKeyMiddleware } = import("discord-interactions");
 console.log("4: discord-interactions imported");
 
 //コマンド振り分け
