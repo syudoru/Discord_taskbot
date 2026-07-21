@@ -11,7 +11,8 @@ import { verifyKeyMiddleware } from "discord-interactions";
 console.log("4: discord-interactions imported");
 
 //コマンド振り分け
-import { handleInteraction } from "./handlers/interactionHandler.js";
+//import { handleInteraction } from "./handlers/interactionHandler.js";
+const { handleInteraction } = await import("./handlers/interactionHandler.js");
 console.log("5: nteractionHandler.js imported");
 
 const app = express();

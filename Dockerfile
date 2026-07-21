@@ -9,6 +9,6 @@ RUN npm ci --omit=dev
 # ソースコードをコピー
 COPY . .
 
-ENV POST=8080
+ENV PORT=8080
 
 CMD ["npm", "start"]
