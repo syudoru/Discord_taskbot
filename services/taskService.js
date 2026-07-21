@@ -93,7 +93,7 @@ export async function deleteTask(userId, taskId) {
     const taskref = getTaskCollection(userId);
 
     //削除対象タスク取得
-    const snapshot = await taskref.get();
+    const snapshot = await taskref.doc(taskId).get();
 
     //指定タスクが存在しない場合はfalseを返す
     if (!snapshot.exists) {
