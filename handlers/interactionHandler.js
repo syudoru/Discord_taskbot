@@ -1,9 +1,9 @@
-//import { ApplicationCommandOptionType } from "discord.js";
+//import { ApplicationCommandOptionType } from "@discordjs/builders";
 import { InteractionType } from "discord-interactions";
 
-console.log("4.1: commandLoader.js start");
-const { ApplicationCommandOptionType } = await import("discord.js");
-console.log("4.2: commandLoader.js end");
+console.log("4.1: @discordjs/builders start");
+const { ApplicationCommandOptionType } = await import("@discordjs/builders");
+console.log("4.2: @discordjs/builders end");
 
 console.log("4.3: commandLoader.js start");
 const commandsModule = await import("../loaders/commandLoader.js");

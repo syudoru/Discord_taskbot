@@ -1,4 +1,4 @@
-import SlashCommandBuilder, { SlashCommandSubcommandBuilder } from "discord.js";
+import SlashCommandBuilder, { SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import db from "./services/firestore.js";
 console.log(isNaN(parseInt("100.3")));
 

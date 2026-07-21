@@ -1,4 +1,4 @@
-import { MessageFlags, SlashCommandSubcommandBuilder } from "discord.js";
+import { MessageFlags, SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import { InteractionResponseType } from "discord-interactions";
 import { createTask, getTasks } from "../../services/taskService.js";
 import { SetLog } from "../../services/userDataService.js";

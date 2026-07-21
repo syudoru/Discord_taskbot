@@ -1,4 +1,4 @@
-import { SlashCommandSubcommandBuilder } from "discord.js";
+import { SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import { InteractionResponseType } from "discord-interactions";
 
 export default {

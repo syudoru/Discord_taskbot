@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath, pathToFileURL } from "url";
-import { SlashCommandBuilder } from "discord.js";
+import { SlashCommandBuilder } from "@discordjs/builders";
 import { InteractionResponseType } from "discord-interactions";
 
 const __filename = fileURLToPath(import.meta.url);
