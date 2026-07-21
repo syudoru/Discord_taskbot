@@ -1,5 +1,6 @@
-import { MessageFlags, SlashCommandSubcommandBuilder } from "@discordjs/builders";
+import { SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import { InteractionResponseType } from "discord-interactions";
+import { MessageFlags } from "discord-api-types/v10";
 import { createTask, getTasks } from "../../services/taskService.js";
 import { SetLog } from "../../services/userDataService.js";
 import db from "../../services\/firestore.js";
