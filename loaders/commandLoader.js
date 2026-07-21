@@ -35,6 +35,7 @@ for (const entry of entries) {
   } else {
     continue;
   }
+  console.log(`4.3.5: get command file start`);
 
   const { default: command } = await import(
     pathToFileURL(filePath).href
@@ -43,7 +44,7 @@ for (const entry of entries) {
 
   if ("data" in command && ("execute" in command || "subcommands" in command)) {
     commands.set(command.data.name, command)
-    console.log(`4.3.5: get command ${command.data.name}`);
+    console.log(`4.3.: get command file ${command.data.name}`);
   } else {
     console.warn(`[WARNING] ${filePath} には data または execute プロパティがありません。`);
   }
