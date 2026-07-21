@@ -58,7 +58,7 @@ export async function GetLog(userId, title) {
   try {
     //logsドキュメント取得
     let logs = await getUserDataCollection(userId).doc("logs").get();
-
+    console.log(logs);
     //そのログ項目がない場合、エラーを投げる
     if (logs[title] == undefined) {
       const error = new Error(`指定項目がありません: ${title}`);
