@@ -1,5 +1,10 @@
-import { ApplicationCommandOptionType } from "discord.js";
+//import { ApplicationCommandOptionType } from "discord.js";
 import { InteractionType } from "discord-interactions";
+
+console.log("4.1: discord.js start");
+const { ApplicationCommandOptionType } = import("discord.js");
+console.log("4.2: discord.js end");
+
 //コマンドMap取得
 import commands from "../loaders/commandLoader.js";
 
