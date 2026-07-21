@@ -2,7 +2,7 @@
 import { InteractionType } from "discord-interactions";
 
 console.log("4.1: @discordjs/builders start");
-const { ApplicationCommandOptionType } = await import("@discordjs/builders");
+const { ApplicationCommandOptionType } = await import("discord-api-types/v10");
 console.log("4.2: @discordjs/builders end");
 
 console.log("4.3: commandLoader.js start");
